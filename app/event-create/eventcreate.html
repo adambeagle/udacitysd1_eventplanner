@@ -1,0 +1,29 @@
+<div class="row">
+  <form name="form" ng-controller="EventCreateCtrl" class="col-lg-8 col-lg-offset-2" novalidate>
+  	<h2>Create New Event</h2>
+
+  	<div class="form-group-lg" ng-class="getValid()" ng-controller="FormGroupCtrl" bootstrap-valid add-input>
+  		<label for="eventName">Event Name <span class="no-em">(required)</span></label>
+  		<input type="text" ng-model="event.name" name="eventName" class="form-control" id="eventName" placeholder="Ex: My Birthday Party!" required autofocus>
+  		<required-error-message></required-error-message>
+  	</div>
+
+  	<ng-include src="'event-create/location-partial.html'"></ng-include>
+  	<ng-include src="'event-create/startdate-partial.html'"></ng-include>
+    <ng-include src="'event-create/enddate-partial.html'"></ng-include>
+  	<ng-include src="'event-create/eventtype-partial.html'"></ng-include>
+  	<ng-include src="'event-create/host-partial.html'"></ng-include>
+    <ng-include src="'event-create/capacity-partial.html'"></ng-include>
+  	<ng-include src="'event-create/contact-partial.html'"></ng-include>
+  	<ng-include src="'event-create/guests-partial.html'"></ng-include>
+
+  	<div class="form-group" ng-class="{'has-success': event.message}">
+      <label for="message">Message</label>
+      <p class="text-muted">Any further instructions or information for your guests goes here.</p>
+      <textarea id="message" rows="5" class="form-control" placeholder="Ex: BYOB" ng-model="event.message"></textarea>
+    </div>
+
+  	<div class="btn btn-default btn-lg btn-submit" ng-click="form.$submitted = true; form.$valid && save(user)" ng-class="{valid: form.$valid, invalid: form.$invalid}">Submit</div>
+  	<p class="has-error help-block" ng-class="{invisible: !(form.$invalid && form.$submitted)}">There are problems with the form. Look for red fields above for more information.</p>
+  </form>
+</div>

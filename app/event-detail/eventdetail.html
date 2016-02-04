@@ -1,0 +1,54 @@
+<div class="text-center text-capitalize" ng-controller="EventDetailCtrl">
+  <header>
+    <h1>{{event.name}}</h1>
+    <a href="#/">&lt; Return to My Events &gt;</a>
+  </header>
+
+  <div class="row event-attribute">
+    <div class="col-xs-12 col-sm-6">Start:</div>
+    <div class="col-xs-12 col-sm-6">
+      {{event.startDate | date:'mediumDate'}}<span ng-show="event.startTime"><br>{{event.startTime | date:'shortTime'}}</span>
+    </div>
+  </div>
+  <div ng-show="event.endDate || event.endTime" class="row event-attribute">
+    <div class="col-xs-12 col-sm-6">End:</div>
+    <div class="col-xs-12 col-sm-6">
+      {{event.endDate | date:'mediumDate'}}<span ng-show="event.endTime"><span ng-show="event.endDate"><br></span>{{event.endTime | date:'shortTime'}}</span>
+    </div>
+  </div>
+  <div class="row event-attribute">
+    <div class="col-xs-12 col-sm-6">Location:</div>
+    <div class="col-xs-12 col-sm-6">{{event.location}}</div>
+  </div>
+  <div ng-show="event.type" class="row event-attribute">
+    <div class="col-xs-12 col-sm-6">Type:</div>
+    <div class="col-xs-12 col-sm-6">{{event.type}}</div>
+  </div>
+  <div ng-show="event.host" class="row event-attribute">
+    <div class="col-xs-12 col-sm-6">Host:</div>
+    <div class="col-xs-12 col-sm-6">{{event.host}}</div>
+  </div>
+  <div ng-show="event.capacity" class="row event-attribute">
+    <div class="col-xs-12 col-sm-6">Capacity:</div>
+    <div class="col-xs-12 col-sm-6">{{event.capacity}}</div>
+  </div>
+  <div ng-show="event.contactName || event.contactPhone" class="row event-attribute">
+    <div class="col-xs-12 col-sm-6">Contact:</div>
+    <div class="col-xs-12 col-sm-6">
+      {{event.contactName}}
+      <span ng-show="event.contactPhone"><span ng-show="event.contactName"><br></span>{{event.contactPhone | phoneNanp}}</p>
+    </div>
+  </div>
+  <div ng-show="event.guests" class="row event-attribute">
+    <div class="col-xs-12 col-sm-6">Guests:</div>
+    <div class="col-xs-12 col-sm-6">
+      <ul>
+        <li ng-repeat="guest in event.guests">{{guest}}</p>
+      </ul>
+    </div>
+  </div>
+  <div ng-show="event.message" class="row event-attribute">
+    <div class="col-xs-12 col-sm-6">Message:</div>
+    <div class="col-xs-12 col-sm-6">{{event.message}}</div>
+  </div>
+</div>

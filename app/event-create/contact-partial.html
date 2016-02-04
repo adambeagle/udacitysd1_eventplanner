@@ -1,0 +1,15 @@
+<div ng-controller="ToggleCtrl">
+	<p ng-show="!on"><a ng-click="toggle() && focusId('#contactName')" ng-keypress="toggle() && focusId('#contactName')" id="openContact" tabindex="0">+Contact</a></p>
+	<div class="row" ng-show="on">
+		<div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-class="{'has-success': event.contactName}">
+			<label for="contactName">Contact Name <a class="toggle-button" ng-click="toggle() && focusId('#openContact'); event.contactName = null; event.contactPhone = null" ng-keypress="toggle() && focusId('#openContact'); event.contactName = null; event.contactPhone = null" tabindex="0"></a></label>
+			<input type="text" class="form-control" id="contactName" name="contactName" ng-model="event.contactName" placeholder="Ex: John Doe" focus-on-open>
+		</div>
+		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-right" ng-class="getValid()" ng-controller="FormGroupCtrl" add-input bootstrap-valid>
+			<label for="contactPhone"><span class="sr-only">Contact </span><span class="visible-xs-inline">Contact </span>Phone</label>
+			<input type="tel" class="form-control" id="contactPhone" name="contactPhone" ng-model="event.contactPhone" placeholder="(###) ###-####" ng-model-options="{ debounce: 500 }"  tel-nanp>
+			<span ng-show="event.contactPhone" class="help-block">{{event.contactPhone | phoneNanp}}</span>
+			<span ng-show="input.$dirty && input.$invalid" class="help-block">Invalid phone number. Try format ###-###-####</span>
+		</div>
+	</div>
+</div>

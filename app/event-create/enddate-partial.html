@@ -1,0 +1,18 @@
+<div ng-controller="ToggleCtrl">
+	<p ng-show="!on"><a id="openEndDate" ng-click="toggle() && updateEndDate() && focusId('#endDate')" ng-keypress="toggle() && updateEndDate() && focusId('#endDate')" tabindex="0">+End</a></p>
+	<div class="row" ng-show="on">
+		<div class="col-xs-7 col-sm-3 col-md-3 col-lg-4" ng-class="getValid()" ng-controller="FormGroupCtrl" add-input bootstrap-valid>
+			<label for="endDate">End Date <a class="toggle-button" ng-click="toggle() && focusId('#openEndDate'); event.endDate = null" ng-keypress="toggle() && focusId('#openEndDate'); event.endDate = null" tabindex="0"></a></label>
+			<input type="date" class="form-control" id="endDate" name="endDate" ng-model="event.endDate" placeholder="YYYY-MM-DD" ng-min="event.startDate" ng-change="updateEndTimeMin()" date>
+			<span ng-show="input.$valid" class="help-block">{{event.endDate | date:'EEE dd MMM yyyy'}}</span>
+			<span ng-show="input.$error.min" class="help-block">Date cannot be prior to start date</span>
+		</div>
+		<div class="col-xs-5 col-sm-9 col-md-9 col-lg-8 col-right" ng-class="getValid()" ng-controller="FormGroupCtrl" add-input bootstrap-valid>
+			<label for="endTime"><span class="sr-only">End </span>Time</label>
+			<input type="time" class="form-control" id="endTime" name="endTime" ng-model="event.endTime" step="900" placeholder="Ex: 12:00 pm" ng-min="event.endTimeMin" time>
+			<span class="help-block" ng-show="event.endTime">{{event.endTime | date:'hh:mm a'}}</span>
+			<span class="help-block" ng-show="input.$error.min">End time cannot precede start time</span>
+			<span ng-show="input.$dirty && input.$error.time" class="help-block">Invalid time. Use format &lt;HH:MM AM|PM&gt;</span>
+		</div>
+	</div>
+</div>

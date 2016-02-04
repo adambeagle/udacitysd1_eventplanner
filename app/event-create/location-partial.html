@@ -1,0 +1,5 @@
+<div ng-class="getValid()" ng-controller="FormGroupCtrl" bootstrap-valid add-input>
+	<label for="eventLocation">Location <span class="no-em">(required)</span></label>
+	<input type="text" class="form-control" id="eventLocation" name="eventLocation" ng-model="event.location" placeholder="Ex: 123 Fake St. Springfield, NT" required places-autocomplete>
+	<required-error-message></required-error-message>
+</div>

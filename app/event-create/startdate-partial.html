@@ -1,0 +1,16 @@
+<div class="row">
+	<div class="col-xs-7 col-sm-3 col-md-3 col-lg-4" extra-class="{'has-warning': priorToToday(event.startDate)}" ng-class="getValid()" ng-controller="FormGroupCtrl" bootstrap-valid add-input>
+		<label for="startDate">Start Date <span class="no-em">(required)</span></label>
+		<input type="date" class="form-control" id="startDate" name="startDate" ng-model="event.startDate" ng-model-options="{debounce: 350}" placeholder="YYYY-MM-DD" ng-change="form.endDate.isOn() && updateEndDate()" required date>
+		<span ng-show="input.$valid" class="help-block">{{event.startDate | date:'EEE dd MMM yyyy'}}</span>
+		<required-error-message></required-error-message>
+		<span class="help-block" ng-show="input.$error.date">Invalid date.</span>
+		<span ng-show="priorToToday(event.startDate)" class="help-block">Warning: Date is prior to today ({{today | date:'yyyy-MM-dd'}})</span>
+	</div>
+	<div class="col-xs-5 col-sm-9 col-md-9 col-lg-8 col-right" ng-class="getValid()" ng-controller="FormGroupCtrl" bootstrap-valid add-input>
+		<label for="startTime"><span class="sr-only">Start </span>Time <span class="no-em">(optional)</span></label>
+		<input type="time" class="form-control" id="startTime" name="startTime" ng-model="event.startTime" ng-model-options="{ debounce: 500 }" step="900" placeholder="Ex: 12:00 pm" ng-change="updateEndTimeMin()" time>
+		<span class="help-block" ng-show="event.startTime">{{event.startTime | date:'hh:mm a'}}</span>
+    <span ng-show="input.$dirty && input.$error.time" class="help-block">Invalid time. Use format &lt;HH:MM AM|PM&gt;</span>
+  </div>
+</div>

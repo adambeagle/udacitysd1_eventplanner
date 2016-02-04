@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="eventPlanner" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="eventPlanner" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="eventPlanner" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="eventPlanner" class="no-js" ng-strict-di> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>EventPlanner</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/eventplanner.css">
+  <!--<script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>-->
+</head>
+
+<body ng-controller="EventPlannerCtrl">
+    <div class="topbar form-inline">
+      <div class="topbar-brand" ng-class="{'separator-right': !amLoggedIn()}"><a href="/#/">EventPlanner</a></div>
+      <span ng-show="amLoggedIn()" class="hidden-xs" ng-cloak><em>Logged in as {{ user.username }}</em></span>
+      
+      <div ng-if="!amLoggedIn()" ng-controller="ToggleCtrl" class="login" ng-cloak>
+        <a class="visible-xs" href="#/login" tabindex="0">Log in</a>
+        <a class="hidden-xs" ng-hide="on" ng-click="toggle() && focusId('loginEmail')" tabindex="0">Log in</a>
+
+        <form ng-controller="LoginCtrl" ng-submit="!login() && alert('Invalid username and/or password')" ng-class="{invisible: !on}" name="loginForm" class="form-inline hidden-xs">
+          <label for="loginEmail">Email</label>
+          <input type="email" ng-model="email" id="loginEmail" class="form-control">
+          <label for="loginPassword">Password</label>
+          <input id="loginPassword" ng-model="password" type="password" class="form-control" ng-cloak>
+          <button type="submit">Log in</button>
+          <p class="login-error" ng-show="loginFailed">Invalid username and/or password</p>
+        </form>
+      </div>
+
+      <div class="silly-separator"></div>
+
+      <nav role="navigation" ng-if="amLoggedIn()" ng-cloak>
+        <ul>
+          <a href="#/" tabindex="0"><li class="hidden-xs">My Events</li></a>
+          <a href="/#/new-event" tabindex="0"><li>New Event</li></a>
+          <a ng-show="amLoggedIn()" ng-click="logout()" tabindex="0"><li class="logout"><strong> Logout</strong></li></a>
+        </ul>
+      </nav>
+    </div>
+    <p ng-show="amLoggedIn()" class="visible-xs text-right right-spacer" ng-cloak><em>Logged in as {{ user.username }}</em></p>
+
+  <div ng-hide="amLoggedIn()" class="frontness text-center">
+    <h1>EventPlanner</h1>
+    <p class="logo">&#x1f4c5;</p>
+    <p>Create, organize, and share events</p>
+  </div>
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <div class="container" ng-view>
+  </div>
+  
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHvmE2mcT_Z7nyFHl4H13fcf4ijLIXAtM&libraries=places"></script>
+
+  <!-- production_only 
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> 
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+  -->
+  <!-- inject:js -->
+  <!-- endinject -->
+  <script src="js/eventplanner.js"></script>
+</body>
+</html>

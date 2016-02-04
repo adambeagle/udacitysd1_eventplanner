@@ -1,0 +1,20 @@
+<form name="form" ng-controller="RegisterCtrl" class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" novalidate>
+
+  <div ng-class="getValid()" ng-controller="FormGroupCtrl" add-input bootstrap-valid>
+    <label for="username">Email</label>
+    <input type="email" id="username" name="username" ng-model="userInfo.username" ng-model-options="{ debounce: 500 }" class="form-control" username-available required>
+    <required-error-message></required-error-message>
+    <p class="help-block" ng-show="input.$error.email">Invalid email address</p>
+    <p class="help-block" ng-show="input.$error.usernameTaken">This email is already associated with an account.<br>Log in at the top of this page!</p>
+  </div>
+
+  <div ng-class="getValid()" ng-controller="FormGroupCtrl" add-input bootstrap-valid>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" ng-model="userInfo.password" ng-model-options="{ debounce: 500 }" class="form-control" required password-min-length="8">
+    <p class="help-block">Minimum length: 8</p>
+    <required-error-message></required-error-message>
+  </div>
+  
+  <button type="submit" class="btn btn-default btn-submit btn-lg" ng-class="{valid: form.$valid, invalid: form.$invalid}" ng-click="form.$submitted = true; form.$valid && register()">Register Me!</button>
+  <p class="has-error help-block" ng-show="form.$submitted && form.$invalid">Email and/or password invalid.</p>
+</form>

@@ -1,0 +1,7 @@
+<div ng-controller="ToggleCtrl">
+	<p ng-show="!on"><a id="openHost" ng-click="toggle() && focusId('#hostInput')" ng-keypress="toggle() && focusId('#hostInput')" tabindex="0">+Host</a></p>
+	<div class="form-group" ng-show="on" ng-class="{'has-success': event.host}">
+		<label for="hostInput">Host <a class="toggle-button" ng-click="toggle() && focusId('#openHost'); event.host = null" ng-keypress="toggle() && focusId('#openHost'); event.host = null" tabindex="0"></a></label>
+		<input type="text" class="form-control" id="hostInput" ng-model="event.host" name="host" placeholder="Ex: Company, Inc.">
+	</div>
+</div>
