@@ -18,17 +18,17 @@
       <div class="topbar-brand" ng-class="{'separator-right': !amLoggedIn()}"><a href="/#/">EventPlanner</a></div>
       <span ng-show="amLoggedIn()" class="hidden-xs" ng-cloak><em>Logged in as {{ user.username }}</em></span>
       
-      <div ng-if="!amLoggedIn()" ng-controller="ToggleCtrl" class="login" ng-cloak>
-        <a class="visible-xs" href="#/login" tabindex="0">Log in</a>
-        <a class="hidden-xs" ng-hide="on" ng-click="toggle() && focusId('loginEmail')" tabindex="0">Log in</a>
+      <div ng-if="!amLoggedIn()" ng-controller="ToggleCtrl" class="login" role="form" ng-cloak>
+        <a class="visible-xs" href="#/login" role="navigation" tabindex="0">Log in</a>
+        <a class="hidden-xs" ng-hide="on" ng-click="toggle() && focusId('loginEmail')" ng-keypress="toggle() && focusId('loginEmail')" role="navigation" tabindex="0">Log in</a>
 
-        <form ng-controller="LoginCtrl" ng-submit="!login() && alert('Invalid username and/or password')" ng-class="{invisible: !on}" name="loginForm" class="form-inline hidden-xs">
+        <form ng-controller="LoginCtrl" ng-submit="!login() && alert('Invalid username and/or password')" ng-class="{invisible: !on}" name="loginForm" class="form-inline hidden-xs"
           <label for="loginEmail">Email</label>
           <input type="email" ng-model="email" id="loginEmail" class="form-control" autocomplete="email">
           <label for="loginPassword">Password</label>
           <input id="loginPassword" ng-model="password" type="password" class="form-control" ng-cloak>
           <button type="submit">Log in</button>
-          <p class="login-error" ng-show="loginFailed">Invalid username and/or password</p>
+          <p class="login-error" ng-show="loginFailed"><strong>Invalid username and/or password</strong></p>
         </form>
       </div>
       <div class="silly-separator"></div>
@@ -43,7 +43,7 @@
     </div>
     <p ng-show="amLoggedIn()" class="visible-xs text-right right-spacer" ng-cloak><em>Logged in as {{ user.username }}</em></p>
 
-  <div ng-hide="amLoggedIn()" class="frontness text-center">
+  <div ng-hide="amLoggedIn()" class="frontness text-center" role="banner">
     <h1>EventPlanner</h1>
     <p class="logo">&#x1f4c5;</p>
     <p>Create, organize, and share events</p>
@@ -53,7 +53,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  <div class="container" ng-view>
+  <div class="container" role="main" ng-view>
   </div>
   
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHvmE2mcT_Z7nyFHl4H13fcf4ijLIXAtM&libraries=places"></script>

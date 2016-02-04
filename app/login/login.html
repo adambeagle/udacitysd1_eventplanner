@@ -1,5 +1,5 @@
 <div class="row">
-  <form ng-submit="login()" ng-controller="LoginCtrl" name="loginForm" class="col-xs-12">
+  <form ng-submit="login()" ng-controller="LoginCtrl" name="loginForm" class="col-xs-12" role="form">
     <h1 class="bottom-spacer">Log in</h1>
     <div class="form-group">
       <label for="loginEmail">Email</label>
@@ -9,7 +9,7 @@
       <label for="loginPassword">Password</label>
       <input id="loginPassword" ng-model="password" type="password" class="form-control">
     </div>
-    <button class="btn btn-default" type="submit">Log in</button>
     <p class="help-block has-error" ng-show="loginFailed">Invalid username and/or password</p>
+    <button class="btn btn-default" type="submit">Log in</button>
   </form>
 </div>

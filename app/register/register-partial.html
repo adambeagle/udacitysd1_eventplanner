@@ -1,5 +1,4 @@
-<form name="form" ng-controller="RegisterCtrl" class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" novalidate>
-
+<form name="form" ng-controller="RegisterCtrl" class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" role="form" novalidate>
   <div ng-class="getValid()" ng-controller="FormGroupCtrl" add-input bootstrap-valid>
     <label for="username">Email</label>
     <input type="email" id="username" name="username" ng-model="userInfo.username" ng-model-options="{ debounce: 500 }" class="form-control" autocomplete="email" username-available required>

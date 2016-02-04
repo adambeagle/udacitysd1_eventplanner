@@ -1,5 +1,5 @@
 <div class="row">
-  <form name="form" ng-controller="EventCreateCtrl" class="col-lg-8 col-lg-offset-2" novalidate>
+  <form name="form" ng-submit="form.$valid && save(user)" ng-controller="EventCreateCtrl" class="col-lg-8 col-lg-offset-2" role="form" novalidate>
   	<h2>Create New Event</h2>
 
   	<div class="form-group-lg" ng-class="getValid()" ng-controller="FormGroupCtrl" bootstrap-valid add-input>
@@ -23,7 +23,7 @@
       <textarea id="message" rows="5" class="form-control" placeholder="Ex: BYOB" ng-model="event.message"></textarea>
     </div>
 
-  	<div class="btn btn-default btn-lg btn-submit" ng-click="form.$submitted = true; form.$valid && save(user)" ng-class="{valid: form.$valid, invalid: form.$invalid}">Submit</div>
+  	<button type="submit" class="btn btn-default btn-lg btn-submit" ng-class="{valid: form.$valid, invalid: form.$invalid}">Submit</button>
   	<p class="has-error help-block" ng-class="{invisible: !(form.$invalid && form.$submitted)}">There are problems with the form. Look for red fields above for more information.</p>
   </form>
 </div>
