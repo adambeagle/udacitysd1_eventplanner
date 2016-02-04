@@ -1,0 +1,29 @@
+{
+  "name": "eventplanner",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Udacity Senior Web Developer Project 1",
+  "repository": "",
+  "license": "MIT",
+  "devDependencies": {
+    "bower": "^1.3.1",
+    "browser-sync": "^2.11.1",
+    "gulp": "^3.9.0",
+    "gulp-angular-filesort": "^1.1.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-eslint": "^1.1.1",
+    "gulp-inject": "^3.0.0",
+    "gulp-jasmine-phantom": "^2.0.1",
+    "gulp-replace": "^0.5.4",
+    "gulp-sass": "^2.1.1",
+    "gulp-uglify": "^1.5.1",
+    "http-server": "^0.8.5",
+    "jasmine-core": "^2.3.4"
+  },
+  "scripts": {
+    "postinstall": "bower install",
+    "prestart": "npm install",
+    "start": "http-server app/dist/ -p 8000 -c-1"
+  }
+}
