@@ -42,10 +42,10 @@ angular.module('eventPlanner', [
 
 /* 
 Top-level controller for eventPlanner app.
-Contains utilty scope methods and 
+Contains authentication checks and utilty scope methods
 */
-.controller('EventPlannerCtrl', ['$scope', '$timeout', 'dummyAuthService', 
-  function($scope, $timeout, auth) {
+.controller('EventPlannerCtrl', ['$scope', '$timeout', '$window', 'dummyAuthService', 
+  function($scope, $timeout, $window, auth) {
 
   $scope.user = null;
 
@@ -92,5 +92,6 @@ Contains utilty scope methods and
 
   $scope.logout = function() {
     auth.logout();
+    $window.location.href = '/'; // Redirect with full page reload
   };
 }]);
