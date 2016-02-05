@@ -14,7 +14,7 @@
 		</div>
 		<div class="form-inline">
 			<input type="text" class="form-control" id="addGuest" ng-model="event.tempGuest" name="addGuest" placeholder="Type a name..." ng-keypress="($event.which == 13) && cancelEvent($event) && !input.$warnings.duplicate && addGuest(input.$viewValue) && (event.tempGuest = null)" warn-duplicate="event.guests" autocomplete="off">
-			<button ng-click="!input.$warnings.duplicate && addGuest(input.$viewValue) && (event.tempGuest = null)" class="btn">Add Guest</button>
+			<div ng-click="!input.$warnings.duplicate && addGuest(input.$viewValue) && (event.tempGuest = null)" ng-keypress="!input.$warnings.duplicate && addGuest(input.$viewValue) && (event.tempGuest = null)" class="btn btn-default" role="button">Add Guest</div>
 		</div>
 		<p class="help-block" ng-show="input.$warnings.duplicate" role="alert">Name already on guest list</p>
 	</div>

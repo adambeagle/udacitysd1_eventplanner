@@ -341,7 +341,7 @@ Resulting value in model is always string of only digits
         var checkAgainst = scope.$eval(attrs.warnDuplicate);
         ctrl.$warnings.duplicate = false;
 
-        if (!modelValue) return true;
+        if (!modelValue || !checkAgainst) return true;
 
         viewValue = viewValue.toLowerCase();
 
