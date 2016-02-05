@@ -109,6 +109,6 @@ angular.module('formHelpers.formGroup', [])
   return {
     restrict: 'E',
     require: ['^form', 'addInput'],
-    template: '<p class="help-block" ng-show="(input.$touched || input.$dirty || form.$submitted) && input.$error.required">This field is required</p>',
+    template: '<p class="help-block" ng-show="(input.$touched || input.$dirty || form.$submitted) && input.$error.required" role="alert">This field is required</p>',
   };
 });

@@ -10,7 +10,6 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/eventplanner.css">
-  <!--<script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>-->
 </head>
 
 <body ng-controller="EventPlannerCtrl">
@@ -20,24 +19,24 @@
       
       <div ng-if="!amLoggedIn()" ng-controller="ToggleCtrl" class="login" role="form" ng-cloak>
         <a class="visible-xs" href="#/login" role="navigation" tabindex="0">Log in</a>
-        <a class="hidden-xs" ng-hide="on" ng-click="toggle() && focusId('loginEmail')" ng-keypress="toggle() && focusId('loginEmail')" role="navigation" tabindex="0">Log in</a>
+        <a class="hidden-xs" ng-hide="on" ng-click="toggle() && focusId('loginEmail')" ng-keypress="toggle() && focusId('loginEmail')" tabindex="0">Log in</a>
 
         <form ng-controller="LoginCtrl" ng-submit="!login() && alert('Invalid username and/or password')" ng-class="{invisible: !on}" name="loginForm" class="form-inline hidden-xs"
           <label for="loginEmail">Email</label>
-          <input type="email" ng-model="email" id="loginEmail" class="form-control" autocomplete="email">
+          <input type="email" ng-model="email" id="loginEmail" class="form-control" autocomplete="email" aria-required="true" required>
           <label for="loginPassword">Password</label>
-          <input id="loginPassword" ng-model="password" type="password" class="form-control" ng-cloak>
+          <input id="loginPassword" ng-model="password" type="password" class="form-control" aria-required="true" required ng-cloak>
           <button type="submit">Log in</button>
-          <p class="login-error" ng-show="loginFailed"><strong>Invalid username and/or password</strong></p>
+          <p class="login-error" ng-show="loginFailed" role="alert"><strong>Invalid username and/or password</strong></p>
         </form>
       </div>
       <div class="silly-separator"></div>
 
       <nav role="navigation" ng-if="amLoggedIn()" ng-cloak>
         <ul>
-          <a href="#/" tabindex="0"><li class="hidden-xs">My Events</li></a>
-          <a href="/#/new-event" tabindex="0"><li>New Event</li></a>
-          <a ng-show="amLoggedIn()" ng-click="logout()" tabindex="0"><li class="logout"><strong> Logout</strong></li></a>
+          <li class="hidden-xs"><a href="#/" tabindex="0">My Events</a></li>
+          <li><a href="/#/new-event" tabindex="0">New Event</a></li>
+          <li class="logout"><a ng-show="amLoggedIn()" ng-click="logout()" tabindex="0"><strong> Logout</strong></a></li>
         </ul>
       </nav>
     </div>

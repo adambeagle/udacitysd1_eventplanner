@@ -1,11 +1,12 @@
 <div ng-controller="ToggleCtrl">
-	<p ng-show="!on"><a id="openGuests" ng-click="toggle() && focusId('#addGuest')" ng-keypress="($event.keyCode != 9) && toggle() && focusId('#addGuest')" tabindex="0">+Guests</a></p>
+	<p ng-show="!on"><a id="openGuests" ng-click="toggle() && focusId('#addGuest')" ng-keypress="($event.keyCode != 9) && toggle() && focusId('#addGuest')" tabindex="0">+Guests<span class="sr-only"> (Open guests section)</span></a></p>
 
 	<div class="form-group" ng-show="on" ng-class="getValid()" ng-controller="FormGroupCtrl" extra-class="{'has-warning': input.$warnings.duplicate}" add-input bootstrap-valid>
-		<label>Guests <a class="toggle-button" ng-click="toggle() && focusId('#openGuests') && clearGuests()" ng-keypress="toggle() && focusId('#openGuests') && clearGuests()" tabindex="0"></a></label>
+		<label>Guests</label>
+		<a class="toggle-button" ng-click="toggle() && focusId('#openGuests') && clearGuests()" ng-keypress="toggle() && focusId('#openGuests') && clearGuests()" tabindex="0"><span class="sr-only"> (Clear guests)</span></a>
 		<div class="row">
 			<div class="col-sm-6">
-				<div class="guestlist">
+				<div class="guestlist" aria-live="polite">
 					<p ng-show="!event.guests">(No guests yet)</p>
 					<p class="title-case" ng-repeat="guest in event.guests | orderBy:guest"><a ng-click="removeGuest($index)" ng-keypress="(($event.keyCode || $event.which) == 13) && focusId('#addGuest') && removeGuest($index)" class="delete" tabindex="0">&#x2715;</a>{{guest}}</p>
 				</div>
@@ -15,6 +16,6 @@
 			<input type="text" class="form-control" id="addGuest" ng-model="event.tempGuest" name="addGuest" placeholder="Type a name..." ng-keypress="($event.which == 13) && cancelEvent($event) && !input.$warnings.duplicate && addGuest(input.$viewValue) && (event.tempGuest = null)" warn-duplicate="event.guests" autocomplete="off">
 			<button ng-click="!input.$warnings.duplicate && addGuest(input.$viewValue) && (event.tempGuest = null)" class="btn">Add Guest</button>
 		</div>
-		<p class="help-block" ng-show="input.$warnings.duplicate">Name already on guest list</p>
+		<p class="help-block" ng-show="input.$warnings.duplicate" role="alert">Name already on guest list</p>
 	</div>
 </div>

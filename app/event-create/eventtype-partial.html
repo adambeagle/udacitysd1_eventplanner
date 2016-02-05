@@ -1,7 +1,8 @@
 <div ng-controller="ToggleCtrl">
-	<p ng-show="!on"><a id="openEventType" ng-click="toggle() && focusId('#eventType')" ng-keypress="($event.keyCode != 9) && toggle() && focusId('#eventType')" tabindex="0">+Type</a></p>
+	<p ng-show="!on"><a id="openEventType" ng-click="toggle() && focusId('#eventType')" ng-keypress="($event.keyCode != 9) && toggle() && focusId('#eventType')" tabindex="0">+Type<span class="sr-only"> (Open event type section)</span></a></p>
 	<div class="form-group" ng-class="{'has-success': event.type}" ng-show="on">
-		<label for="eventType">Type <a class="toggle-button" ng-click="toggle() && focusId('#openEventType'); event.type = null" ng-keypress="toggle() && focusId('#openEventType'); event.type = null" tabindex="0"></a></label>
+		<label for="eventType">Type</label>
+    <a class="toggle-button" ng-click="toggle() && focusId('#openEventType'); event.type = null" ng-keypress="toggle() && focusId('#openEventType'); event.type = null" tabindex="0"><span class="sr-only"> (Clear event type)</span></a>
 		<input list="types" class="form-control" id="eventType" placeholder="Ex: Meeting" ng-model="event.type" data-next="form.host.isOn() ? 'host' : 'openHost'">
 		<datalist id="types">
 			<option ng-repeat="eType in eventTypes | orderBy:eType">{{ eType | capitalize }}</option>

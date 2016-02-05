@@ -3,11 +3,11 @@
     <h1 class="bottom-spacer">Log in</h1>
     <div class="form-group">
       <label for="loginEmail">Email</label>
-      <input type="email" ng-model="email" id="loginEmail" class="form-control" autocomplete="email" autofocus>
+      <input type="email" ng-model="email" id="loginEmail" class="form-control" autocomplete="email" aria-required="true" required autofocus>
     </div>
     <div class="form-group">
       <label for="loginPassword">Password</label>
-      <input id="loginPassword" ng-model="password" type="password" class="form-control">
+      <input id="loginPassword" ng-model="password" type="password" class="form-control" aria-required="true" required>
     </div>
     <p class="help-block has-error" ng-show="loginFailed">Invalid username and/or password</p>
     <button class="btn btn-default" type="submit">Log in</button>

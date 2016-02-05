@@ -1,8 +1,8 @@
 <div ng-controller="ToggleCtrl">
-  <p ng-show="!on"><a ng-click="toggle() && focusId('#capacity')" ng-keypress="toggle() && focusId('#capacity')" id="openCapacity" tabindex="0">+Capacity</a></p>
+  <p ng-show="!on"><a ng-click="toggle() && focusId('#capacity')" ng-keypress="toggle() && focusId('#capacity')" id="openCapacity" tabindex="0">+Capacity<span class="sr-only"> (Open capacity section)</span></a></p>
   <div ng-controller="FormGroupCtrl" ng-class="getValid()" ng-show="on" bootstrap-valid add-input>
-    <label for="capacity">Capacity <a class="toggle-button" ng-click="toggle() && focusId('#openCapacity'); event.capacity = null" ng-keypress="toggle() && focusId('#openCapacity'); event.capacity = null" tabindex="0"></a></label>
-    <input id="capacity" type="number" min="1" ng-model="event.capacity" name="capacity" class="form-control form-control-xs">
-    <p class="help-block" ng-show="input.$error.min">Please enter a positive number</p>
+    <label for="capacity">Capacity</label><a class="toggle-button" ng-click="toggle() && focusId('#openCapacity'); event.capacity = null" ng-keypress="toggle() && focusId('#openCapacity'); event.capacity = null" tabindex="0"><span class="sr-only"> (Clear capacity)</span></a>
+    <input id="capacity" type="number" min="1" ng-model="event.capacity" name="capacity" class="form-control form-control-xs" aria-invalid="input.$invalid ? 'true' : 'false'">
+    <p class="help-block" ng-show="input.$error.min" role="alert">Please enter a positive number</p>
   </div>
 </div>

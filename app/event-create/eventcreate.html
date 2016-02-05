@@ -1,10 +1,10 @@
 <div class="row">
-  <form name="form" ng-submit="form.$valid && save(user)" ng-controller="EventCreateCtrl" class="col-lg-8 col-lg-offset-2" role="form" novalidate>
-  	<h2>Create New Event</h2>
+  <form name="form" ng-submit="form.$valid && save(user)" ng-controller="EventCreateCtrl" class="col-lg-8 col-lg-offset-2" role="form" aria-labelledby="formTitle" novalidate>
+  	<h2 id="formTitle">Create New Event</h2>
 
   	<div class="form-group-lg" ng-class="getValid()" ng-controller="FormGroupCtrl" bootstrap-valid add-input>
   		<label for="eventName">Event Name <span class="no-em">(required)</span></label>
-  		<input type="text" ng-model="event.name" name="eventName" class="form-control" id="eventName" placeholder="Ex: My Birthday Party!" required autofocus>
+  		<input type="text" ng-model="event.name" name="eventName" class="form-control" id="eventName" placeholder="Ex: My Birthday Party!" aria-required="true" aria-invalid="{{input.$invalid ? 'true' : 'false'}}" required autofocus>
   		<required-error-message></required-error-message>
   	</div>
 
@@ -19,11 +19,11 @@
 
   	<div class="form-group" ng-class="{'has-success': event.message}">
       <label for="message">Message</label>
-      <p class="text-muted">Any further instructions or information for your guests goes here.</p>
-      <textarea id="message" rows="5" class="form-control" placeholder="Ex: BYOB" ng-model="event.message"></textarea>
+      <p id="messageDescription" class="text-muted">Any further instructions or information for your guests goes here.</p>
+      <textarea id="message" rows="5" class="form-control" placeholder="Ex: BYOB" ng-model="event.message" aria-describedby="messageDescription"></textarea>
     </div>
 
   	<button type="submit" class="btn btn-default btn-lg btn-submit" ng-class="{valid: form.$valid, invalid: form.$invalid}">Submit</button>
-  	<p class="has-error help-block" ng-class="{invisible: !(form.$invalid && form.$submitted)}">There are problems with the form. Look for red fields above for more information.</p>
+  	<p class="has-error help-block" ng-class="{invisible: !(form.$invalid && form.$submitted)}" role="alert">There are problems with the form. Look for red fields above for more information.</p>
   </form>
 </div>

@@ -1,7 +1,8 @@
-<form name="form" ng-controller="RegisterCtrl" class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" role="form" novalidate>
+<form name="form" ng-controller="RegisterCtrl" class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" role="form" aria-labelledby="formTitle" novalidate>
+  <h3 id="formTitle" class="sr-only">Registration Form</h3>
   <div ng-class="getValid()" ng-controller="FormGroupCtrl" add-input bootstrap-valid>
     <label for="username">Email</label>
-    <input type="email" id="username" name="username" ng-model="userInfo.username" ng-model-options="{ debounce: 500 }" class="form-control" autocomplete="email" username-available required>
+    <input type="email" id="username" name="username" ng-model="userInfo.username" ng-model-options="{ debounce: 500 }" class="form-control" autocomplete="email" aria-required="true" aria-invalid="{{input.$invalid ? 'true' : 'false'}}" username-available required>
     <required-error-message></required-error-message>
     <p class="help-block" ng-show="input.$error.email">Invalid email address</p>
     <p class="help-block" ng-show="input.$error.usernameTaken">This email is already associated with an account.<br>Log in at the top of this page!</p>
@@ -9,7 +10,7 @@
 
   <div ng-class="getValid()" ng-controller="FormGroupCtrl" add-input bootstrap-valid>
     <label for="password">Password</label>
-    <input type="password" id="password" name="password" ng-model="userInfo.password" ng-model-options="{ debounce: 500 }" class="form-control" required password-min-length="8">
+    <input type="password" id="password" name="password" ng-model="userInfo.password" ng-model-options="{ debounce: 500 }" class="form-control" aria-invalid="{{input.$invalid ? 'true' : 'false'}}" area-required="true" required password-min-length="8">
     <p class="help-block">Minimum length: 8</p>
     <required-error-message></required-error-message>
   </div>

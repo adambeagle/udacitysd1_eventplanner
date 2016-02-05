@@ -75,8 +75,8 @@ a.delete:hover {
 .topbar>form,
 .topbar>nav,
 .topbar>nav>ul,
-.topbar>nav>ul>a,
-.topbar>nav>ul>a>li {
+.topbar>nav>ul>li,
+.topbar>nav>ul>li>a {
 	display: inline-block;
 }
 
@@ -269,7 +269,7 @@ a.toggle-button {
 }
 
 a.toggle-button:before {
-	content: "[remove]";
+	content: " [remove]";
 }
 
 .btn-submit {
