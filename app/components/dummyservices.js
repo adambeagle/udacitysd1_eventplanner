@@ -140,6 +140,10 @@ angular.module('dummyServices', [])
 
           return true;
         }
+
+        if (loginResult.birthday) {
+          loginResult.birthday = new Date(loginResult.birthday);
+        }
       }
 
       return loginResult;
@@ -167,6 +171,9 @@ angular.module('dummyServices', [])
     link: function(scope, elm, attrs, ctrl) {
       ctrl.$validators.usernameTaken = function(modelValue, viewValue) {
         if (!modelValue) return true;
+
+        // If logged in, value is allowed to equal the current username
+        if (scope.user && modelValue === scope.user.username ) return true;
 
         return dummyBackendService.usernameAvailable(modelValue);
       };

@@ -4,8 +4,8 @@
 		<input type="date" class="form-control" id="startDate" name="startDate" ng-model="event.startDate" ng-model-options="{debounce: 350}" placeholder="YYYY-MM-DD" ng-change="form.endDate.isOn() && updateEndDate()" aria-invalid="{{input.$invalid ? 'true' : 'false'}}" aria-required="true" required date>
 		<span ng-show="input.$valid" class="help-block">{{event.startDate | date:'EEE dd MMM yyyy'}}</span>
 		<required-error-message></required-error-message>
-		<span class="help-block" ng-show="input.$error.date">Invalid date.</span>
-		<span ng-show="priorToToday(event.startDate)" class="help-block">Warning: Date is prior to today ({{today | date:'yyyy-MM-dd'}})</span>
+		<span class="help-block" ng-show="input.$error.date" role="alert">Invalid date.</span>
+		<span ng-show="priorToToday(event.startDate)" class="help-block" role="alert">Warning: Date is prior to today ({{today | date:'yyyy-MM-dd'}})</span>
 	</div>
 
 	<div class="col-xs-5 col-sm-9 col-md-9 col-lg-8 col-right" ng-class="getValid()" ng-controller="FormGroupCtrl" bootstrap-valid add-input>

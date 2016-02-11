@@ -4,8 +4,8 @@
     <label for="username">Email</label>
     <input type="email" id="username" name="username" ng-model="userInfo.username" ng-model-options="{ debounce: 500 }" class="form-control" autocomplete="email" aria-required="true" aria-invalid="{{input.$invalid ? 'true' : 'false'}}" username-available required>
     <required-error-message></required-error-message>
-    <p class="help-block" ng-show="input.$error.email">Invalid email address</p>
-    <p class="help-block" ng-show="input.$error.usernameTaken">This email is already associated with an account.<br>Log in at the top of this page!</p>
+    <p class="help-block" ng-show="input.$error.email" role="alert">Invalid email address</p>
+    <p class="help-block" ng-show="input.$error.usernameTaken" role="alert">This email is already associated with an account.<br>Log in at the top of this page!</p>
   </div>
 
   <div ng-class="getValid()" ng-controller="FormGroupCtrl" add-input bootstrap-valid>

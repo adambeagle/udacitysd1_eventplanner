@@ -91,7 +91,6 @@ angular.module('formHelpers.inputTypes', [])
           reResult = patterns[i].re.exec(value);
 
           if (reResult) { 
-            console.log(reResult);
             reI = i;
             break;
           }

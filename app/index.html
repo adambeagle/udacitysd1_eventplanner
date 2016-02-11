@@ -13,7 +13,7 @@
 </head>
 
 <body ng-controller="EventPlannerCtrl">
-    <div class="topbar">
+    <div class="topbar"> 
       <div class="container">
         <div class="container-flex">
           <div class="topbar-brand" ng-class="{'separator-right': !amLoggedIn()}"><a href="/#/">EventPlanner</a></div>
@@ -21,9 +21,9 @@
           
           <div ng-if="!amLoggedIn()" ng-controller="ToggleCtrl" class="login" role="form" ng-cloak>
             <a class="visible-xs" href="#/login" role="navigation" tabindex="0">Log in</a>
-            <a class="hidden-xs" ng-hide="on" ng-click="toggle() && focusId('loginEmail')" ng-keypress="toggle() && focusId('loginEmail')" tabindex="0">Log in</a>
+            <toggle-link focus-to="loginEmail" class="hidden-xs" ng-hide="on">Log in</toggle-link>
 
-            <form ng-controller="LoginCtrl" ng-submit="!login() && alert('Invalid username and/or password')" ng-show="on" name="loginForm" class="form-inline hidden-xs">
+            <form ng-controller="LoginCtrl" ng-submit="login()" ng-show="on" name="loginForm" class="form-inline hidden-xs">
               <label for="loginEmail">Email</label>
               <input type="email" ng-model="email" id="loginEmail" class="form-control" autocomplete="email" aria-required="true" required>
               <label for="loginPassword">Password</label>

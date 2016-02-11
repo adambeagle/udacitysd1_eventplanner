@@ -1,9 +1,9 @@
 <div ng-controller="ToggleCtrl">
-	<p ng-show="!on"><a id="openGuests" ng-click="toggle() && focusId('#addGuest')" ng-keypress="($event.keyCode != 9) && toggle() && focusId('#addGuest')" tabindex="0">+Guests<span class="sr-only"> (Open guests section)</span></a></p>
+	<p ng-show="!on"><toggle-link id="openGuests" focus-to="addGuest">+Guests<span class="sr-only"> (Open guests section)</span></toggle-link></p>
 
 	<div class="form-group" ng-show="on" ng-class="getValid()" ng-controller="FormGroupCtrl" extra-class="{'has-warning': input.$warnings.duplicate}" add-input bootstrap-valid>
 		<label>Guests</label>
-		<a class="toggle-button" ng-click="toggle() && focusId('#openGuests') && clearGuests()" ng-keypress="toggle() && focusId('#openGuests') && clearGuests()" tabindex="0"><span class="sr-only"> (Clear guests)</span></a>
+		<toggle-link class="toggle-button" focus-to="openGuests" on-press="clearGuests()"><span class="sr-only"> (Clear guests)</span></toggle-link>
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="guestlist" aria-live="polite">

@@ -98,8 +98,6 @@ angular.module('eventPlanner.eventCreate', ['ngRoute'])
 
 	// Save to backend when form valid and submitted
 	$scope.save = function(user) {
-		// TODO no backend for this project, but this is where the event 
-		// would be saved to the backend
     if (user.addEvent($scope.event)) {
     	$location.path('/');
     };

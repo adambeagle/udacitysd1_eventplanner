@@ -1,9 +1,9 @@
 <div ng-controller="ToggleCtrl">
-	<p ng-show="!on"><a ng-click="toggle() && focusId('#contactName')" ng-keypress="toggle() && focusId('#contactName')" id="openContact" tabindex="0">+Contact<span class="sr-only"> (Open contact section)</span></a></p>
+	<p ng-show="!on"><toggle-link id="openContact" focus-to="contactName">+Contact<span class="sr-only"> (Open contact section)</span></toggle-link></p>
 	<div class="row" ng-show="on">
 		<div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-class="{'has-success': event.contactName}">
 			<label for="contactName">Contact Name</label>
-			<a class="toggle-button" ng-click="toggle() && focusId('#openContact'); event.contactName = null; event.contactPhone = null" ng-keypress="toggle() && focusId('#openContact'); event.contactName = null; event.contactPhone = null" tabindex="0"><span class="sr-only"> (Clear contact information)</span></a>
+			<toggle-link class="toggle-button" focus-to="openContact" on-press="event.contactName = null; event.contactPhone = null"><span class="sr-only"> (Clear contact name/phone)</span></toggle-link>
 			<input type="text" class="form-control" id="contactName" name="contactName" ng-model="event.contactName" placeholder="Ex: John Doe" focus-on-open>
 		</div>
 		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-right" ng-class="getValid()" ng-controller="FormGroupCtrl" add-input bootstrap-valid>

@@ -101,11 +101,12 @@ gulp.task('copy-js-dev', function() {
 		'bower_components/angular-local-storage/dist/angular-local-storage.js'
 	]);
 
-	gulp.src('app/**/*.js')
-		.pipe(concat('eventplanner.js'))
-		.pipe(gulp.dest('dist/js'));
+	thirdPartySources.pipe(gulp.dest('dist/js/lib'));
 
-	return thirdPartySources.pipe(gulp.dest('dist/js/lib'));
+	return gulp.src('app/**/*.js')
+		.pipe(concat('eventplanner.js'))
+		.pipe(gulp.dest('dist/js'))
+		.pipe(browserSync.stream());;
 });
 
 gulp.task('fonts', function() {

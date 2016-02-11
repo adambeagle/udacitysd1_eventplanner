@@ -9,6 +9,7 @@ angular.module('eventPlanner', [
   'eventPlanner.eventDetail',
   'eventPlanner.register',
   'eventPlanner.login',
+  'eventPlanner.profile',
   'formHelpers.formGroup',
   'formHelpers.inputTypes',
   'dummyServices',
