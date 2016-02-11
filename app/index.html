@@ -36,8 +36,8 @@
           <nav role="navigation" ng-if="amLoggedIn()" ng-cloak>
             <ul>
               <li class="hidden-xs"><a href="#/" tabindex="0">My Events</a></li>
-              <li><a href="/#/new-event" tabindex="0" title="New Event"><span class="visible-xs-inline-block glyphicon glyphicon-plus"></span><span class="hidden-xs">New Event</span></a></li>
-              <li><a href="/#/profile" tabindex="0" title="Edit Profile"><span class="visible-xs-inline-block glyphicon glyphicon-cog"></span><span class="hidden-xs">Edit Profile</span></a></li>
+              <li><a href="/#/new-event" tabindex="0" title="New Event"><span class="visible-xs-inline-block glyphicon glyphicon-plus"></span><span class="visible-xs sr-only">Add Event</span><span class="hidden-xs">New Event</span></a></li>
+              <li><a href="/#/profile" tabindex="0" title="Edit Profile"><span class="visible-xs-inline-block glyphicon glyphicon-cog"></span><span class="visible-xs sr-only">Edit Profile</span><span class="hidden-xs">Edit Profile</span></a></li>
               <li class="logout"><a ng-show="amLoggedIn()" ng-click="logout()" tabindex="0"><strong> Logout</strong></a></li>
             </ul>
           </nav>

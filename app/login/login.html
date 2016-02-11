@@ -9,7 +9,7 @@
       <label for="loginPassword">Password</label>
       <input id="loginPassword" ng-model="password" type="password" class="form-control" aria-required="true" required>
     </div>
-    <p class="help-block has-error" ng-show="loginFailed">Invalid username and/or password</p>
+    <p class="help-block has-error" ng-show="loginFailed" role="alert">Invalid username and/or password</p>
     <button class="btn btn-default" type="submit">Log in</button>
   </form>
 </div>
