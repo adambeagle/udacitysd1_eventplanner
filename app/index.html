@@ -13,38 +13,42 @@
 </head>
 
 <body ng-controller="EventPlannerCtrl">
-    <div class="topbar form-inline">
-      <div class="topbar-brand" ng-class="{'separator-right': !amLoggedIn()}"><a href="/#/">EventPlanner</a></div>
-      <span ng-show="amLoggedIn()" class="hidden-xs" ng-cloak><em>Logged in as {{ user.username }}</em></span>
-      
-      <div ng-if="!amLoggedIn()" ng-controller="ToggleCtrl" class="login" role="form" ng-cloak>
-        <a class="visible-xs" href="#/login" role="navigation" tabindex="0">Log in</a>
-        <a class="hidden-xs" ng-hide="on" ng-click="toggle() && focusId('loginEmail')" ng-keypress="toggle() && focusId('loginEmail')" tabindex="0">Log in</a>
+    <div class="topbar">
+      <div class="container">
+        <div class="container-flex">
+          <div class="topbar-brand" ng-class="{'separator-right': !amLoggedIn()}"><a href="/#/">EventPlanner</a></div>
+          <span ng-show="amLoggedIn()" class="hidden-xs" ng-cloak><em>Logged in as {{ user.username }}</em></span>
+          
+          <div ng-if="!amLoggedIn()" ng-controller="ToggleCtrl" class="login" role="form" ng-cloak>
+            <a class="visible-xs" href="#/login" role="navigation" tabindex="0">Log in</a>
+            <a class="hidden-xs" ng-hide="on" ng-click="toggle() && focusId('loginEmail')" ng-keypress="toggle() && focusId('loginEmail')" tabindex="0">Log in</a>
 
-        <form ng-controller="LoginCtrl" ng-submit="!login() && alert('Invalid username and/or password')" ng-class="{invisible: !on}" name="loginForm" class="form-inline hidden-xs"
-          <label for="loginEmail">Email</label>
-          <input type="email" ng-model="email" id="loginEmail" class="form-control" autocomplete="email" aria-required="true" required>
-          <label for="loginPassword">Password</label>
-          <input id="loginPassword" ng-model="password" type="password" class="form-control" aria-required="true" required ng-cloak>
-          <button type="submit">Log in</button>
-          <p class="login-error" ng-show="loginFailed" role="alert"><strong>Invalid username and/or password</strong></p>
-        </form>
+            <form ng-controller="LoginCtrl" ng-submit="!login() && alert('Invalid username and/or password')" ng-show="on" name="loginForm" class="form-inline hidden-xs">
+              <label for="loginEmail">Email</label>
+              <input type="email" ng-model="email" id="loginEmail" class="form-control" autocomplete="email" aria-required="true" required>
+              <label for="loginPassword">Password</label>
+              <input id="loginPassword" ng-model="password" type="password" class="form-control" aria-required="true" required ng-cloak>
+              <button type="submit">Log in</button>
+              <p class="login-error" ng-show="loginFailed" role="alert"><strong>Invalid username and/or password</strong></p>
+            </form>
+          </div>
+
+          <nav role="navigation" ng-if="amLoggedIn()" ng-cloak>
+            <ul>
+              <li class="hidden-xs"><a href="#/" tabindex="0">My Events</a></li>
+              <li><a href="/#/new-event" tabindex="0" title="New Event"><span class="visible-xs-inline-block glyphicon glyphicon-plus"></span><span class="hidden-xs">New Event</span></a></li>
+              <li><a href="/#/profile" tabindex="0" title="Edit Profile"><span class="visible-xs-inline-block glyphicon glyphicon-cog"></span><span class="hidden-xs">Edit Profile</span></a></li>
+              <li class="logout"><a ng-show="amLoggedIn()" ng-click="logout()" tabindex="0"><strong> Logout</strong></a></li>
+            </ul>
+          </nav>
+        </div>
       </div>
-      <div class="silly-separator"></div>
-
-      <nav role="navigation" ng-if="amLoggedIn()" ng-cloak>
-        <ul>
-          <li class="hidden-xs"><a href="#/" tabindex="0">My Events</a></li>
-          <li><a href="/#/new-event" tabindex="0">New Event</a></li>
-          <li class="logout"><a ng-show="amLoggedIn()" ng-click="logout()" tabindex="0"><strong> Logout</strong></a></li>
-        </ul>
-      </nav>
     </div>
     <p ng-show="amLoggedIn()" class="visible-xs text-right right-spacer" ng-cloak><em>Logged in as {{ user.username }}</em></p>
 
   <div ng-hide="amLoggedIn()" class="frontness text-center" role="banner">
     <h1>EventPlanner</h1>
-    <p class="logo">&#x1f4c5;</p>
+    <p class="logo"><span class="glyphicon glyphicon-calendar"></span></p>
     <p>Create, organize, and share events</p>
   </div>
 

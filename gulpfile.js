@@ -12,32 +12,32 @@ var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	angularFilesort = require('gulp-angular-filesort');
 
-gulp.task('default', ['copy-js-dev', 'copy-html', 'copy-index-dev', 'copy-images', 'styles', 'lint'], function() {
+gulp.task('default', ['copy-js-dev', 'copy-html', 'copy-index-dev', 'copy-images', 'styles', 'fonts', 'lint'], function() {
 	gulp.watch('app/assets/sass/**/*.scss', ['styles']);
-	gulp.watch(['app/app.js', 'app/!(dist)/**/*.js'], ['lint', 'copy-js-dev']);
-	gulp.watch('app/!(dist)/**/*.html', ['copy-html']);
+	gulp.watch(['app/app.js', 'app/**/*.js'], ['lint', 'copy-js-dev']);
+	gulp.watch('app/*/**/*.html', ['copy-html']);
 	gulp.watch('app/index.html', ['copy-index-dev']);
-	gulp.watch('app/dist/**/*.html').on('change', browserSync.reload);
+	gulp.watch('dist/**/*.html').on('change', browserSync.reload);
 
 	browserSync.init({
-		server: 'app/dist',
+		server: 'dist',
 	});
 });
 
 // Build app to app/dist in production-ready state
-gulp.task('dist', ['js-dist', 'copy-html', 'copy-index', 'copy-images', 'styles']);
+gulp.task('dist', ['js-dist', 'copy-html', 'copy-index', 'copy-images', 'fonts', 'styles']);
 
 // Concatenate and uglify app JS; place in dist/js
 gulp.task('js-dist', ['copy-js'], function() {
-	gulp.src(['app/app.js', 'app/!(dist)/**/*.js'])
+	gulp.src('app/**/*.js')
 		.pipe(concat('eventplanner.js'))
 		.pipe(uglify())
-		.pipe(gulp.dest('app/dist/js'));
+		.pipe(gulp.dest('dist/js'));
 });
 
 // Run ESLint on any changes to app JS
 gulp.task('lint', function() {
-	return gulp.src(['app/app.js', 'app/!(dist)/**/*.js'])
+	return gulp.src('app/**/*.js')
 		.pipe(eslint())
 		.pipe(eslint.format())
 		.pipe(eslint.failOnError());
@@ -47,11 +47,11 @@ gulp.task('lint', function() {
 gulp.task('copy-index-dev', ['copy-js-dev'], function() {
 	gulp.src('app/index.html')
 		.pipe(replace(/<!-- dev_only ([\s\S]*?)-->/g, '$1'))
-		.pipe(inject(gulp.src('app/dist/js/lib/*.js').pipe(angularFilesort()), {
-			ignorePath: '/app/dist/',
+		.pipe(inject(gulp.src('dist/js/lib/*.js').pipe(angularFilesort()), {
+			ignorePath: '/dist/',
 			addRootSlash: false
 		}))
-		.pipe(gulp.dest('app/dist'));
+		.pipe(gulp.dest('dist'));
 });
 
 // Add production-only CDN-hosted third-party JS to index.html and copy to dist
@@ -59,23 +59,23 @@ gulp.task('copy-index-dev', ['copy-js-dev'], function() {
 gulp.task('copy-index', ['copy-js'], function() {
 	gulp.src('app/index.html')
 		.pipe(replace(/<!-- production_only ([\s\S]*?)-->/g, '$1'))
-		.pipe(inject(gulp.src('app/dist/js/lib/*.js').pipe(angularFilesort()), {
-			ignorePath: '/app/dist/',
+		.pipe(inject(gulp.src('dist/js/lib/*.js').pipe(angularFilesort()), {
+			ignorePath: '/dist/',
 			addRootSlash: false
 		}))
-		.pipe(gulp.dest('app/dist'));
+		.pipe(gulp.dest('dist'));
 });
 
 // Copy all non-index .html files to dist
 gulp.task('copy-html', function() {
-	gulp.src('app/!(dist)/**/*.html')
-		.pipe(gulp.dest('app/dist'));
+	gulp.src('app/*/**/*.html')
+		.pipe(gulp.dest('dist'));
 });
 
 // Copy any images to dist/img
 gulp.task('copy-images', function() {
 	gulp.src('app/assets/img/*')
-		.pipe(gulp.dest('app/dist/img'));
+		.pipe(gulp.dest('dist/img'));
 });
 
 // Copy production-ready third-party JS from bower_components into dist/js/lib,
@@ -87,7 +87,7 @@ gulp.task('copy-js', function() {
 		'bower_components/angular-local-storage/dist/angular-local-storage.min.js'
 	]);
 
-	return thirdPartySources.pipe(gulp.dest('app/dist/js/lib'));
+	return thirdPartySources.pipe(gulp.dest('dist/js/lib'));
 });
 
 // Copy third-party JS from bower_components into dist/js/lib, and concatenate 
@@ -101,11 +101,16 @@ gulp.task('copy-js-dev', function() {
 		'bower_components/angular-local-storage/dist/angular-local-storage.js'
 	]);
 
-	gulp.src(['app/app.js', 'app/!(dist)/**/*.js'])
+	gulp.src('app/**/*.js')
 		.pipe(concat('eventplanner.js'))
-		.pipe(gulp.dest('app/dist/js'));
+		.pipe(gulp.dest('dist/js'));
 
-	return thirdPartySources.pipe(gulp.dest('app/dist/js/lib'));
+	return thirdPartySources.pipe(gulp.dest('dist/js/lib'));
+});
+
+gulp.task('fonts', function() {
+	gulp.src('bower_components/bootstrap-sass/assets/fonts/bootstrap/*.*')
+		.pipe(gulp.dest('dist/fonts/bootstrap'));
 });
 
 // Prepare .scss styles for production (minify, autoprefix) and place in dist
@@ -117,11 +122,8 @@ gulp.task('styles', function() {
 		.pipe(autoprefixer({
 			browsers: ['last 2 versions']
 		}))
-		.pipe(gulp.dest('app/dist/css'))
+		.pipe(gulp.dest('dist/css'))
 		.pipe(browserSync.stream());
-
-	gulp.src('bower_components/bootstrap/dist/css/bootstrap.min.css')
-		.pipe(gulp.dest('app/dist/css'));
 });
 
 // Run Jasmine integration tests in Chrome

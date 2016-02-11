@@ -26,7 +26,7 @@
             <td><a href="/#/event/{{event.id}}">{{ event.name }}</a></td>
             <td class="hidden-xs">{{ event.location }}</td>
             <td class="hidden-xs hidden-sm">{{ event.startTime | date:'shortTime' }}</td>
-            <td><a class="delete center-xs" ng-click="user.removeEvent(event.id)" tabindex="0"><span class="visible-xs-inline">[&#x2715;]</span><span class="hidden-xs"> [remove]</span></a></td>
+            <td><a class="delete center-xs" ng-click="user.removeEvent(event.id)" tabindex="0"><span class="visible-xs-inline glyphicon glyphicon-remove"></span><span class="hidden-xs"> [remove]</span></a></td>
           </tr>
         </tbody>
       </table>

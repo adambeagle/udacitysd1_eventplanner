@@ -1,4 +1,4 @@
-@import '../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap';
+@import "bootstrap-custom";
 
 /************************
 * VARIABLES
@@ -61,28 +61,33 @@ a.delete:hover {
 	text-transform: capitalize;
 }
 
+.icon {
+	font-size: 120%;
+}
+
 /************************
 * TOPBAR
 ************************/
 .topbar {
-	padding: 5px;
+	position: relative;
+	height: 50px;
 	background-color: $brand-background;
 	color: $brand-foreground;
-	position: relative;
+	display: flex;
+	align-items: stretch;
 }
 
-.topbar>div,
-.topbar>form,
-.topbar>nav,
-.topbar>nav>ul,
-.topbar>nav>ul>li,
-.topbar>nav>ul>li>a {
-	display: inline-block;
+.topbar>div {
+	display: flex;
 }
 
-.topbar .right {
-	position: absolute;
-	right: 0;
+.topbar>div>div>* {
+	display: flex;
+	align-items: center;
+}
+
+.topbar a {
+	color: $brand-foreground;
 }
 
 .topbar-brand {
@@ -93,18 +98,6 @@ a.delete:hover {
 	margin-right: 15px;
 }
 
-.topbar-brand a {
-	color: inherit;
-}
-
-.separator-right {
-		border-right: 1px solid #bbb;
-}
-
-.topbar a {
-	color: inherit;
-}
-
 .topbar button {
 	color: #222;
 	padding: 6px 10px;
@@ -113,24 +106,6 @@ a.delete:hover {
 
 .topbar label {
 	font-weight: normal;
-}
-
-.topbar input {
-	margin-top: 2px;
-	margin-bottom: 2px;
-	margin-right: 5px;
-}
-
-.login form {
-	display: inline;
-}
-
-.topbar .silly-separator {
-	width: 1px;
-	height: 34px;
-	display: inline-block;
-	line-height: 1.42857;
-	vertical-align: middle
 }
 
 .topbar .login-error {
@@ -144,28 +119,35 @@ a.delete:hover {
 * NAV
 ************************/
 .topbar nav {
-	position: absolute;
-	right: 2px;
-	top: 8px;
+	justify-content: flex-end;
+	flex-grow: 1;
+	flex-wrap: nowrap;
 }
 
 .topbar nav>ul {
+	display: flex;
 	padding-left: 0;
 	margin-bottom: 0;
+	list-style: none;
 }
 
-.topbar>nav>ul li {
-	padding: 5px 13px;
+.topbar nav>ul>li {
+	display: flex;
 	line-height: 1.42857;
 	border-radius: 3px;
 }
 
-.topbar nav ul li:hover {
+.topbar nav>ul>li>a {
+	display: inline-block;
+	padding: 10px 13px;
+}
+
+.topbar nav>ul>li:hover {
 	background-color: #546F4E;
 }
 
-.topbar nav ul li.logout {
-	padding-left: 16px;
+.topbar nav>ul>li.logout {
+	padding-left: 4px;
 	border-left: 1px solid #bbb;
 }
 
@@ -184,13 +166,13 @@ a.delete:hover {
 .logo {
 	color: $brand-background;
 	font-size: 8em;
-	margin-top: -15px;
+	margin-top: 10px;
+	margin-bottom: -15px;
 }
 
 header {
 	margin-bottom: 30px;
 }
-
 
 /************************
 * FORMS
@@ -325,6 +307,15 @@ a.toggle-button:before {
 	width: 0 !important;
 }
 
+.separator-right {
+		border-right: 1px solid #bbb;
+}
+
+.container-flex {
+	display: flex;
+	flex-grow: 1;
+}
+
 /************************
 * RESPONSIVE
 ************************/
@@ -341,6 +332,13 @@ a.toggle-button:before {
 	}
 }
 
+@media (max-width: 992px) {
+	.topbar>div {
+		margin: 0;
+		width: 100%;
+	}
+}
+
 @media (min-width: 768px) {
 	.event-attribute div:first-child {
 		text-align: right;
@@ -349,7 +347,4 @@ a.toggle-button:before {
 	.event-attribute div:nth-child(2) {
 		text-align: left;
 	}
-
-
 }
-
