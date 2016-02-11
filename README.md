@@ -3,7 +3,7 @@
 
 Author: Adam Beagle
 
-### Introduction
+### Overview
 
 EventPlanner is an AngularJS application that allows users to create and view events (e.g. meetups, parties). The project was created for Udacity's Senior Web Developer nanodegree. Its emphasis is on responsive design and form usability/validation -- the backend is mocked.
 

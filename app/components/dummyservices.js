@@ -12,7 +12,9 @@ angular.module('dummyServices', [])
 
   Derived from http://stackoverflow.com/a/14206567
 */
-.factory('dummyAuthService', ['userBuilderService', function(userBuilderService) {
+.factory('dummyAuthService', ['userBuilderService', 'dummyBackendService', 
+  function(userBuilderService) {
+
   var currentUser = null;
 
   return {
@@ -63,9 +65,9 @@ angular.module('dummyServices', [])
       return true;
   }
 
-  function save(key, val) {
-      localStorageService.set(key, JSON.stringify(val));
-    }
+  var save = function(key, val) {
+    localStorageService.set(key, JSON.stringify(val));
+  }
 
   return {
     /*
@@ -141,6 +143,7 @@ angular.module('dummyServices', [])
           return true;
         }
 
+        // Transform birthday to Date object
         if (loginResult.birthday) {
           loginResult.birthday = new Date(loginResult.birthday);
         }

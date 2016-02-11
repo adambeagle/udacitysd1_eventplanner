@@ -9,10 +9,12 @@
   </div>
 
   <div ng-class="getValid()" ng-controller="FormGroupCtrl" add-input bootstrap-valid>
+    <!-- For the record, I object to any password requirements beyond minimum length, assuming passwords are properly hashed and salted. However, the requirements for this project state there must be character restrictions :/ -->
     <label for="password">Password</label>
-    <input type="password" id="password" name="password" ng-model="userInfo.password" ng-model-options="{ debounce: 500 }" class="form-control" aria-invalid="{{input.$invalid ? 'true' : 'false'}}" area-required="true" required password-min-length="8">
+    <input type="password" id="password" name="password" ng-model="userInfo.password" ng-model-options="{ debounce: 300 }" class="form-control" aria-invalid="{{input.$invalid ? 'true' : 'false'}}" area-required="true" required password-min-length="8" password-char-requirements>
     <p class="help-block">Minimum length: 8</p>
     <required-error-message></required-error-message>
+    <p class="help-block" ng-show="!input.$error.passwordLength && input.$error.passwordChars">Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number.</p>
   </div>
   
   <button type="submit" class="btn btn-default btn-submit btn-lg" ng-class="{valid: form.$valid, invalid: form.$invalid}" ng-click="form.$submitted = true; form.$valid && register()">Register Me!</button>

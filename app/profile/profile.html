@@ -1,77 +1,70 @@
-<h1 id="formTitle" class="bottom-spacer">Edit Profile</h1>
+<div class="col-lg-8 col-lg-offset-2">
+  <h1 id="formTitle" class="bottom-spacer">Edit Profile</h1>
 
-<form name="form" ng-controller="ProfileCtrl" ng-submit="form.$valid && broadcastSubmit() && save()" aria-labelledby="formTitle" novalidate>
-  <div ng-controller="ToggleCtrl" off-on-event="submitEvent">
-    <div class="form-group" ng-show="!on">
-      <label>Email</label>
-      <toggle-link id="toggleEmail" focus-to="email">[Edit<span class="sr-only"> Email</span>]</toggle-link>
-      <p class="form-control-static">{{user.username}}</p>
+  <form name="form" ng-controller="ProfileCtrl" ng-submit="form.$valid && broadcastSubmit() && save()" aria-labelledby="formTitle" novalidate>
+    <div ng-controller="ToggleCtrl" off-on-event="submitEvent">
+      <div class="form-group" ng-show="!on">
+        <label for="email">Email</label>
+        <p id="email" class="form-control-static" aria-readonly="true">{{user.username}}</p>
+      </div>
     </div>
-    <div ng-show="on" ng-class="getValid()" bootstrap-valid add-input>
-      <label for="email">Email</label>
-      <toggle-link focus-to="toggleEmail" on-press="updatedUser.username = user.username">[Clear changes]</toggle-link>
-      <input type="email" ng-model="updatedUser.username" name="email" id="email" class="form-control" aria-required="true" username-available required>
-      <required-error-message></required-error-message>
-      <p class="help-block" ng-show="input.$error.email" role="alert">Invalid email address</p>
-      <p class="help-block" ng-show="input.$error.usernameTaken" role="alert">This email address is already associated with an account.</p>
-    </div>
-  </div>
 
-  <div ng-controller="ToggleCtrl" off-on-event="submitEvent">
-    <div class="form-group" ng-show="!on">
-      <label>Name</label>
-      <toggle-link id="toggleName" focus-to="name">[Edit<span class="sr-only"> Name</span>]</toggle-link>
-      <p class="form-control-static">{{user.fullName | emptyMessage}}</p>
+    <div ng-controller="ToggleCtrl" off-on-event="submitEvent">
+      <div class="form-group" ng-show="!on">
+        <label>Name</label>
+        <toggle-link id="toggleName" focus-to="name">[Edit<span class="sr-only"> Name</span>]</toggle-link>
+        <p class="form-control-static" aria-disabled="true">{{user.fullName | emptyMessage}}</p>
+      </div>
+      <div ng-show="on" ng-class="getValid()" bootstrap-valid add-input>
+        <label for="name">Name</label>
+        <toggle-link focus-to="toggleName" on-press="updatedUser.fullName = user.fullName">[Clear changes]</toggle-link>
+        <input type="text" ng-model="updatedUser.fullName" name="name" id="name" class="form-control">
+      </div>
     </div>
-    <div ng-show="on" ng-class="getValid()" bootstrap-valid add-input>
-      <label for="name">Name</label>
-      <toggle-link focus-to="toggleName" on-press="updatedUser.fullName = user.fullName">[Clear changes]</toggle-link>
-      <input type="text" ng-model="updatedUser.fullName" name="name" id="name" class="form-control">
-    </div>
-  </div>
 
-  <div ng-controller="ToggleCtrl" off-on-event="submitEvent">
-    <div class="form-group" ng-show="!on">
-      <label>Employer</label>
-      <toggle-link id="toggleEmployer" focus-to="employer">[Edit <span class="sr-only"> Employer</span>]</toggle-link>
-      <p class="form-control-static">{{user.employer | emptyMessage}}</p>
+    <div ng-controller="ToggleCtrl" off-on-event="submitEvent">
+      <div class="form-group" ng-show="!on">
+        <label>Employer</label>
+        <toggle-link id="toggleEmployer" focus-to="employer">[Edit <span class="sr-only"> Employer</span>]</toggle-link>
+        <p class="form-control-static" aria-disabled="true">{{user.employer | emptyMessage}}</p>
+      </div>
+      <div ng-show="on" ng-class="getValid()" bootstrap-valid add-input>
+        <label for="employer">Employer</label>
+        <toggle-link focus-to="toggleEmployer" on-press="updatedUser.employer = user.employer">[Clear changes]</toggle-link>
+        <input type="text" ng-model="updatedUser.employer" name="employer" id="employer" class="form-control">
+      </div>
     </div>
-    <div ng-show="on" ng-class="getValid()" bootstrap-valid add-input>
-      <label for="employer">Employer</label>
-      <toggle-link focus-to="toggleEmployer" on-press="updatedUser.employer = user.employer">[Clear changes]</toggle-link>
-      <input type="text" ng-model="updatedUser.employer" name="employer" id="employer" class="form-control">
-    </div>
-  </div>
 
-  <div ng-controller="ToggleCtrl" off-on-event="submitEvent">
-    <div class="form-group" ng-show="!on">
-      <label>Job Title</label>
-      <toggle-link id="toggleJobTitle" focus-to="jobTitle">[Edit <span class="sr-only"> Job Title</span>]</toggle-link>
-      <p class="form-control-static">{{user.jobTitle | emptyMessage}}</p>
+    <div ng-controller="ToggleCtrl" off-on-event="submitEvent">
+      <div class="form-group" ng-show="!on">
+        <label>Job Title</label>
+        <toggle-link id="toggleJobTitle" focus-to="jobTitle">[Edit <span class="sr-only"> Job Title</span>]</toggle-link>
+        <p class="form-control-static" aria-disabled="true">{{user.jobTitle | emptyMessage}}</p>
+      </div>
+      <div ng-show="on" ng-class="getValid()" bootstrap-valid add-input>
+        <label for="jobTitle">Job Title</label>
+        <toggle-link focus-to="toggleJobTitle" on-press="updatedUser.jobTitle = user.jobTitle">[Clear changes]</toggle-link>
+        <input type="text" ng-model="updatedUser.jobTitle" name="jobTitle" id="jobTitle" class="form-control">
+      </div>
     </div>
-    <div ng-show="on" ng-class="getValid()" bootstrap-valid add-input>
-      <label for="jobTitle">Job Title</label>
-      <toggle-link focus-to="toggleJobTitle" on-press="updatedUser.jobTitle = user.jobTitle">[Clear changes]</toggle-link>
-      <input type="text" ng-model="updatedUser.jobTitle" name="jobTitle" id="jobTitle" class="form-control">
-    </div>
-  </div>
 
-  <div ng-controller="ToggleCtrl" off-on-event="submitEvent">
-    <div class="form-group" ng-show="!on">
-      <label>Birthday</label>
-      <toggle-link id="toggleBirthday" focus-to="birthday">[Edit<span class="sr-only"> Birthday</span>]</toggle-link>
-      <p class="form-control-static">{{user.birthday | date:'EEE dd MMM yyyy' | emptyMessage}}</p>
+    <div ng-controller="ToggleCtrl" off-on-event="submitEvent">
+      <div class="form-group" ng-show="!on">
+        <label>Birthday</label>
+        <toggle-link id="toggleBirthday" focus-to="birthday">[Edit<span class="sr-only"> Birthday</span>]</toggle-link>
+        <p class="form-control-static">{{user.birthday | date:'EEE dd MMM yyyy' | emptyMessage}}</p>
+      </div>
+      <div ng-show="on" ng-class="getValid()" bootstrap-valid add-input>
+        <label for="birthday">Birthday</label>
+        <toggle-link focus-to="toggleBirthday" on-press="updatedUser.birthday = user.birthday">[Clear changes]</toggle-link>
+        <input type="date" ng-model="updatedUser.birthday" name="birthday" id="birthday" class="form-control" aria-invalid="{{input.$invalid ? 'true' : 'false'}}" date>
+        <span ng-show="input.$valid" class="help-block">{{updatedUser.birthday | date:'EEE dd MMM yyyy'}}</span>
+        <span ng-show="input.$error.date" class="help-block" role="alert">Invalid date.</span>
+      </div>
     </div>
-    <div ng-show="on" ng-class="getValid()" bootstrap-valid add-input>
-      <label for="birthday">Birthday</label>
-      <toggle-link focus-to="toggleBirthday" on-press="updatedUser.birthday = user.birthday">[Clear changes]</toggle-link>
-      <input type="date" ng-model="updatedUser.birthday" name="birthday" id="birthday" class="form-control" aria-invalid="{{input.$invalid ? 'true' : 'false'}}" date>
-      <span ng-show="input.$valid" class="help-block">{{updatedUser.birthday | date:'EEE dd MMM yyyy'}}</span>
-      <span ng-show="input.$error.date" class="help-block" role="alert">Invalid date.</span>
-    </div>
-  </div>
 
-  <button type="submit" class="btn btn-default btn-lg btn-submit" ng-class="{valid: form.$valid, invalid: form.$invalid}">Save</button>
-  <p class="has-success help-block" ng-show="form.$submitted && form.$valid" role="alert">Profile updated successfully</p>
-  <p class="has-error help-block" ng-class="{invisible: !(form.$invalid && form.$submitted)}" role="alert">There are problems with the form. Look for red fields above for more information.</p>
-</form>
+    <button type="submit" class="btn btn-default btn-lg btn-submit" ng-class="{valid: form.$valid, invalid: form.$invalid}">Save</button>
+    <p class="has-success help-block" ng-show="form.$submitted && form.$valid" role="alert">Profile updated successfully</p>
+    <p class="has-error help-block" ng-class="{invisible: !(form.$invalid && form.$submitted)}" role="alert">There are problems with the form. Look for red fields above for more information.</p>
+  </form>
+</div>

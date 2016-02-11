@@ -39,5 +39,6 @@ angular.module('eventPlanner.profile', [])
     user.birthday = updUser.birthday;
 
     dummyBackendService.updateUser(user.username, user);
+    return 1;
   }
 }]);

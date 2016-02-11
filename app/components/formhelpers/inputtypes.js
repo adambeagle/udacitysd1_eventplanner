@@ -143,13 +143,51 @@ angular.module('formHelpers.inputTypes', [])
     link: function(scope, elm, attrs, ctrl) {
       var minLen = scope.$eval(attrs['passwordMinLength']);
 
-      ctrl.$validators.password = function(modelValue, viewValue) {
+      ctrl.$validators.passwordLength = function(modelValue, viewValue) {
         if (!modelValue) return true;
 
         return modelValue.length >= minLen;
       };
     }
   };
+})
+
+/* 
+  For the record, I object to any password requirements beyond minimum length,
+  assuming passwords are properly hashed and salted. However, the requirements
+  for this project state there must be character restrictions.
+
+  This directive adds a validator to an input that requires its value
+  to contain at least 1 uppercase character, 1 lowercase character, and
+  1 digit. When these conditions are not met, the input's $error.passwordChars
+  attribute is set.
+
+  USAGE:
+    <input type="password" ng-model="someModel" password-char-requirements>
+*/
+.directive('passwordCharRequirements', function() {
+  return {
+    restrict: 'A',
+    require: 'ngModel',
+    link: function(scope, elm, attrs, ctrl) {
+      var patterns = [
+        /^.*[A-Z]/,
+        /^.*[a-z]/,
+        /^.*\d/
+      ];
+
+      ctrl.$validators.passwordChars = function(modelValue, viewValue) {
+        if (!modelValue) return;
+
+        // Validate when all patterns matched
+        // Note this breaks early on any failure
+        return patterns.every(function(p) {
+          return p.test(modelValue);
+        });
+      };
+    }
+  };
+
 })
 
 /*
