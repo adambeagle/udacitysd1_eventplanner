@@ -25,7 +25,6 @@ var util = (function() {
 })();
 
 
-
 angular.module('helpers.toggle', [])
 
 /*
@@ -44,7 +43,32 @@ angular.module('helpers.toggle', [])
 }])
 
 /*
+	Replaces element directive with <a> that functions as button that toggle's
+	ToggleCtrl on left-click, or enter/space press. role="button" is also added
+	for compatibility.
 
+	Optional focus-to attribute will set focus on a particular id when button pressed.
+
+	Combine with on-press to extend behavior on interaction.
+
+	EXAMPLE USAGE:
+		<ANY ng-controller="ToggleCtrl">
+	  	<p>Some text
+	  		<toggle-link class="some-class" on-press="expr" focus-to="anId">
+	  			Link Text
+	  		</toggle-link>
+	  	</p>
+	  </ANY>
+
+	  rendered as:
+
+		<ANY ng-controller="ToggleCtrl">
+			<p>Some text
+				<a class="some-class" on-press="expr" focus-to="anId" tabindex="0" role="button" ng-transclude>
+					Link Text
+				</a>
+			</p>
+		</ANY>
 */
 .directive('toggleLink', ['$timeout', function($timeout) {
 	return {
@@ -54,6 +78,8 @@ angular.module('helpers.toggle', [])
 		link: function(scope, elm, attrs) {
 			var toggle = function() {
 				scope.toggle();
+				if (!attrs.focusTo) return;
+
 				$timeout(function() {
 					scope.focusId(attrs.focusTo);
   			}, 10);
@@ -117,7 +143,7 @@ angular.module('helpers.misc', [])
 			var action = function() {
 				scope.$eval(attrs.onPress);
 			};
-			
+
 			elm.on('keydown', function(event) {
 				if (event.which === 32 || event.keyCode === 32 || event.key === 'Spacebar') {
 					action()
