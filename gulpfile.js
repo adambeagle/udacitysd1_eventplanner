@@ -106,7 +106,7 @@ gulp.task('copy-js-dev', function() {
 	return gulp.src('app/**/*.js')
 		.pipe(concat('eventplanner.js'))
 		.pipe(gulp.dest('dist/js'))
-		.pipe(browserSync.stream());;
+		.pipe(browserSync.stream());
 });
 
 gulp.task('fonts', function() {
@@ -129,7 +129,7 @@ gulp.task('styles', function() {
 
 // Run Jasmine integration tests in Chrome
 gulp.task('tests', function() {
-	gulp.src('app/**/*_test.js') // TODO multiple files?
+	gulp.src('app/**/*_test.js')
 		.pipe(jasmine({
 			integration: true,
 			vendor: 'app/**/*.js'
