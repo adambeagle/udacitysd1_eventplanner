@@ -1,7 +1,7 @@
 # EventPlanner
 ## Udacity Senior Web Developer Project 1
 
-Author: Adam Beagle
+Author: [Adam Beagle](https://github.com/adambeagle)
 
 ### Overview
 
